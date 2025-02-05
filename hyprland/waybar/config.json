@@ -1,0 +1,115 @@
+	
+reload_style_on_change	true
+layer	"top"
+position	"top"
+height	50
+tooltip	false
+modules-left	
+0	"hyprland/workspaces"
+1	"custom/music"
+modules-center	[]
+modules-right	
+0	"custom/check_rec"
+1	"custom/check_cam"
+2	"idle_inhibitor"
+3	"network"
+4	"cpu"
+5	"memory"
+6	"wireplumber"
+7	"pulseaudio"
+8	"battery"
+9	"clock"
+10	"tray"
+hyprland/workspaces	
+all-outputs	true
+hyprland/window	
+format	"{title}"
+tooltip	false
+max-length	50
+tray	
+icon-size	14
+spacing	10
+idle_inhibitor	
+format	"{icon}"
+format-icons	
+activated	" \uf06e "
+deactivated	" \uf070 "
+clock	
+format	"{:%I:%M %p}"
+format-alt	"{:%A, %B %d}"
+tooltip-format	"<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+cpu	
+interval	1
+format	"\uf2db {usage}%"
+on-click	"alacritty -e htop"
+memory	
+interval	1
+format	"\uf0c9 {used}G"
+on-click	"alacritty -e htop"
+network	
+format-wifi	"\uf1eb  {essid}"
+format-ethernet	"\uf0c1  Ethernet"
+format-disconnected	"⚠ Disconnected"
+tooltip	true
+tooltip-format	"{ifname} via {gwaddr}"
+tooltip-format-wifi	"{ipaddr} : {signalStrength}%"
+tooltip-format-ethernet	"{ipaddr} : {bandwidthTotalBytes}"
+on-click	"alacritty -e nmtui"
+wireplumber	
+format	"{icon}  {volume}%"
+format-bluetooth	"{icon}  {volume}%"
+format-muted	"\u{f075f}"
+format-icons	
+headphones	"\uf025"
+handsfree	"\uf590"
+headset	"\uf590"
+phone	"\uf095"
+portable	"\uf095"
+car	"\uf1b9"
+default	
+0	"\uf027"
+1	"\uf028"
+on-click	"wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+tooltip	false
+scroll-step	5
+pulseaudio	
+format	"{format_source}"
+format-source	"\u{f036c} {volume}%"
+format-source-muted	"\u{f036d}"
+tooltip	false
+scroll-step	5
+on-click	"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+battery	
+interval	1
+format	"{icon} {capacity}%"
+format-icons	
+0	"\uf244"
+1	"\uf243"
+2	"\uf242"
+3	"\uf241"
+4	"\uf240"
+format-charging	"\uf1e6 {capacity}%"
+format-full	"\uf240 {capacity}%"
+states	
+warning	30
+critical	20
+tooltip-format-discharging	"{time}"
+tooltip-format-charging	"{timeTo}"
+custom/music	
+format	"{}"
+max-length	60
+interval	1
+exec	"$HOME/.local/bin/now-playing"
+tooltip	false
+on-click	"playerctl play-pause"
+on-scroll-up	"playerctl next"
+on-scroll-down	"playerctl previous"
+custom/check_rec	
+exec	"~/.local/bin/record-screen -c"
+interval	1
+tooltip-format	"Click to stop recording"
+on-click	"~/.local/bin/record-screen"
+custom/check_cam	
+exec	"~/.local/bin/check_cam"
+interval	1
+tooltip-format	"Camera ON!"
