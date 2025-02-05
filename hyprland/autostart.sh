@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ###################################################
 #               _                       _         #
 #              (_)                     (_)        #
@@ -9,14 +11,20 @@
 #                               |___/             #
 ###################################################
 
+~/.local/bin/batmon -n -L 20 -s ~/.local/share/sounds/notification.ogg -v 75 &
+~/.local/bin/drink_water &
 
-# Modules
-source = ~/.config/hypr/modules/monitors.conf
-source = ~/.config/hypr/modules/input.conf
-source = ~/.config/hypr/modules/decor.conf
-source = ~/.config/hypr/modules/rules.conf
-source = ~/.config/hypr/modules/binds.conf
-source = ~/.config/hypr/modules/misc.conf
+bluetoothctl power off &
 
-# Autostart
-exec-once = ~/.config/hypr/autostart.sh
+hyprpaper &
+hypridle &
+
+~/.config/waybar/start &
+
+lxsession &
+
+udiskie &
+
+brightnessctl -r &
+
+eval "sleep 2; hyprctl reload" &
